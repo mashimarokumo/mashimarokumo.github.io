@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>云的小屋ouo</title>
+  
+  <subtitle>欢迎来到云的秘密基地！</subtitle>
+  <link href="https://mashimarokumo.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://mashimarokumo.github.io/"/>
+  <updated>2021-01-30T14:45:14.081Z</updated>
+  <id>https://mashimarokumo.github.io/</id>
+  
+  <author>
+    <name>mashimaro kumo</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>my first blog!!!!!!</title>
+    <link href="https://mashimarokumo.github.io/2021/01/30/my-first-blog/"/>
+    <id>https://mashimarokumo.github.io/2021/01/30/my-first-blog/</id>
+    <published>2021-01-30T14:42:16.000Z</published>
+    <updated>2021-01-30T14:45:14.081Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;The first time for me to create a blog</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mysql中表操作</title>
+    <link href="https://mashimarokumo.github.io/2021/01/24/biao-cao-zuo/"/>
+    <id>https://mashimarokumo.github.io/2021/01/24/biao-cao-zuo/</id>
+    <published>2021-01-24T02:20:16.000Z</published>
+    <updated>2021-01-30T16:23:44.422Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;创建表&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;​    create table 表名称(字段名称 字段类型(长度) 约束,字段名称 字段类型(长度)</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mysql中数据库操作</title>
+    <link href="https://mashimarokumo.github.io/2021/01/24/shu-ju-ku-cao-zuo/"/>
+    <id>https://mashimarokumo.github.io/2021/01/24/shu-ju-ku-cao-zuo/</id>
+    <published>2021-01-24T01:52:16.000Z</published>
+    <updated>2021-01-30T16:24:02.271Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;创建数据库&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;​    create database 数据库名称 [character set 字符集]；&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-mysql&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
