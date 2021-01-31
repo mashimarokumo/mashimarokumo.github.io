@@ -390,8 +390,8 @@ var _hmt = _hmt || [];
                 </a>
 
                 
-                    <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light btn" target="_blank">
-                        <i class="fab fa-github-alt"></i>Github
+                    <a href="https://github.com/mashimarokumo/mashimarokumo.github.io" class="waves-effect waves-light btn" target="_blank">
+                        <i class="fab fa-github "></i>Fork Me
                     </a>
                 
             </div>
@@ -449,7 +449,7 @@ var _hmt = _hmt || [];
         coverSlider.carousel({
             duration: Number('120'),
             fullWidth: true,
-            indicators: 'false' === 'true',
+            indicators: 'true' === 'true',
             onCycleTo() {
                 if (!initUserPressedOrDraggedActive) {
                     // console.log('initUserPressedOrDraggedActive')
@@ -465,7 +465,7 @@ var _hmt = _hmt || [];
         let autoCarousel = function () {
             carouselIntervalId = setInterval(function () {
                 coverSlider.carousel('next');
-            }, 200);
+            }, 5000);
         };
         autoCarousel();
         
@@ -477,6 +477,16 @@ var _hmt = _hmt || [];
             
         };
 
+        
+        // prev and next cover post.
+        $('#prev-cover').click(function () {
+            coverSlider.carousel('prev');
+            restartPlay();
+        });
+        $('#next-cover').click(function () {
+            coverSlider.carousel('next');
+            restartPlay();
+        });
         
     });
 </script>
