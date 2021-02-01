@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Unity第二轮</title>
+      <link href="2021/02/01/gameobject/"/>
+      <url>2021/02/01/gameobject/</url>
+      
+        <content type="html"><![CDATA[<p>#GameObject类</p><p>##基本属性</p><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">GameObject.activeSelf; //（针对自己本身）是否活动GameObject.activeInHierachy; //是否在整个场景中活动GameObject.SetActive(bool); //谁的那个是否活动，可写入GameObject.CreatePrimitive(PrimitiveType Type); //创建图元GameObject.SetParent(transform); //设置父节点GameObject.tag; //标签<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> unity, c# </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>my first blog!!!!!!</title>
       <link href="2021/01/30/my-first-blog/"/>
       <url>2021/01/30/my-first-blog/</url>

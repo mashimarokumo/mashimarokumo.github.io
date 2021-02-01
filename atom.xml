@@ -6,7 +6,7 @@
   <link href="https://mashimarokumo.github.io/atom.xml" rel="self"/>
   
   <link href="https://mashimarokumo.github.io/"/>
-  <updated>2021-01-30T14:45:14.081Z</updated>
+  <updated>2021-02-01T01:55:44.655Z</updated>
   <id>https://mashimarokumo.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Unity第二轮</title>
+    <link href="https://mashimarokumo.github.io/2021/02/01/gameobject/"/>
+    <id>https://mashimarokumo.github.io/2021/02/01/gameobject/</id>
+    <published>2021-02-01T01:24:49.000Z</published>
+    <updated>2021-02-01T01:55:44.655Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;#GameObject类&lt;/p&gt;
+&lt;p&gt;##基本属性&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-c#&quot; data-language=&quot;c#&quot;&gt;&lt;code class=&quot;language-c#&quot;&gt;GameObject.activeSelf;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="unity, c#" scheme="https://mashimarokumo.github.io/tags/unity-c/"/>
+    
+  </entry>
   
   <entry>
     <title>my first blog!!!!!!</title>
