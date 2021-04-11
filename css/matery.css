@@ -502,7 +502,7 @@ header .side-nav .social-link {
 
 .cover-social-link {
     position: relative;
-    top: 23vh;
+    top: 20vh;
     width: 100%;
     text-align: center;
 }
@@ -572,6 +572,11 @@ header .go-back i {
     color: #fff;
     z-index: 2;
 }
+.coverText {
+    position: relative;
+    color: #fff;
+    z-index: 2;
+}
 
 .bg-cover .title {
     font-size: 4rem;
@@ -579,8 +584,21 @@ header .go-back i {
     margin-bottom: 20px;
     position: relative;
 }
+.coverText .title {
+    font-size: 4rem;
+    line-height: 1.2em;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    position: relative;
+}
 
 .bg-cover .description {
+    font-weight: 300;
+    font-size: 1.25rem;
+    line-height: 1.4em;
+    color: #eee;
+}
+.coverText .description {
     font-weight: 300;
     font-size: 1.25rem;
     line-height: 1.4em;
@@ -592,6 +610,7 @@ header .go-back i {
     font-size: 2.5rem;
     font-weight: 400;
 }
+
 
 @-webkit-keyframes rainbow {
 
