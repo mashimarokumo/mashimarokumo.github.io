@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="contact, 云的小屋ouo">
+    <meta name="keywords" content="排序算法, 云的小屋ouo">
     <meta name="description" content="まだ届かない夢のために勉強中">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>contact | 云的小屋ouo</title>
+    <title>排序算法 | 云的小屋ouo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -502,32 +502,30 @@ var _hmt = _hmt || [];
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                WELCOME TO KUMO’S SITE!
-                
-            </div>
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('相信你能猜到密码的（x')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: ['「お持ちなさい、あなたの望んだその星を✨」——《少女☆歌剧 Revue Starlight》','「掴んで見せます、自分星！」——《少女☆歌剧 Revue Starlight》'],
-                        startDelay: 500,
-                        typeSpeed: 200,
-                        loop: true,
-                        backSpeed: 100,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">排序算法</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -535,30 +533,393 @@ var _hmt = _hmt || [];
 
 
 
-    </div>
-</div>
 
-<main class="content">
-    <div id="contact" class="container chip-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="tag-title center-align">
-                    <i class="fas fa-comments"></i>&nbsp;&nbsp;留言板
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/study/">
+                                <span class="chip bg-color">study</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-05-13
                 </div>
                 
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.2k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
             </div>
         </div>
-        <div class="card">
-            
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Dim temp  As Integer
+List2.Clear
+For i = 1 To n - 1
+  For j = n To i + 1 Step -1
+    If a(j) &gt; a(j - 1) Then
+         temp = a(j):  a(j) = a(j - 1): a(j - 1) = temp
+    End If
+  Next j
+  List2.AddItem Str(a(i))
+Next i
+List2.AddItem Str(a(i))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Dim k As Integer
+Dim t As Integer
+List2.Clear
+For i = 1 To n - 1
+    k = i
+    For j = i + 1 To n
+        If a(k) &lt; a(j) Then k = j
+    Next j
+    If i &lt;&gt; k Then
+        t = a(i): a(i) = a(k): a(k) = t
+    End If
+    List2.AddItem Str(a(i))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="冒泡排序去重"><a href="#冒泡排序去重" class="headerlink" title="冒泡排序去重"></a>冒泡排序去重</h3><p>####一、算法思路:</p>
+<p>1.常规冒泡排序，方向为n至i+1，大的往前冒</p>
+<p>当相等时，开始去重</p>
+<p>2.去重程序：相邻数据相等时，将<strong>后一个</strong>数组变量赋值为排序数据的最后一个，然后数据总数减1。</p>
+<p>####二、注意事项</p>
+<p>当循环运行至最后一轮（i=bottom-1），此时第i个数据和bottom数据仍重复，bottom减一，程序结束时i=bottom+1（如数据1，1排序去重）</p>
+<p>排序方向和排序对象不同，会导致去重程序发生变化，应注意重新赋值对象的选择，和换上来的数据是否需要进行再次比较！</p>
+<h3 id="选择排序去重"><a href="#选择排序去重" class="headerlink" title="选择排序去重"></a>选择排序去重</h3><h4 id="一-算法思路"><a href="#一-算法思路" class="headerlink" title="一 算法思路"></a>一 算法思路</h4><p>常规选择排序，方向为i+1至n，将大的所对应j赋值于k，当相等时，开始去重</p>
+<p>去重程序：相邻数据相等时，进行剔除处理，将<strong>后一个</strong>数组变量赋值为排序数据的最后一个，然后数据总数减1。</p>
+<p>####二 注意事项*</p>
+<p>\1. 当方向从后往前考虑时，需增加语句    if k = bottom then k = j, 当方向从前往后考虑时，需增加语句j = j - 1</p>
+<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">i = 1
+bottom = n
+Do While i &lt;= bottom - 1
+   k = I
+   j = bottom  'j=i+1   '方向改变时替换
+   Do While j &gt;= i + 1  'Do While j&lt;= bottom '方向改变时替换
+      If a(j) &lt; a(k) Then
+         k = j
+      ElseIf a(j) = a(k) Then '相邻两个数据相等，进行剔除处理
+          a(j) = a(bottom)
+         If k = bottom Then k = j  'j = j - 1  '方向改变时替换
+         bottom = bottom - 1
+      End If
+   j = j - 1  'j = j + 1  '方向改变时替换
+   Loop
+   If i &lt;&gt; k Then t = a(i): a(i) = a(k): a(k) = t
+   List2.AddItem Str(a(i))
+   i = i + 1
+Loop
+If i = bottom Then List2.AddItem Str(a(i))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="奇偶位置排序-（奇数位置升序，偶数位置降序）"><a href="#奇偶位置排序-（奇数位置升序，偶数位置降序）" class="headerlink" title="奇偶位置排序:（奇数位置升序，偶数位置降序）"></a>奇偶位置排序:（奇数位置升序，偶数位置降序）</h3><p>####一，算法思路</p>
+<p>第一轮排序时，只排奇数位，因此从前往后</p>
+<p>的话，J的初值是1，与j+1比较排序升序</p>
+<p>新定义一个变量K=1，每进行下一轮排序，</p>
+<p>K变成它的相反数以此达到偶数时降序</p>
+<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Private Sub jowpx_Click()
+Dim temp  As Integer, k As Integer
+List2.Clear
+For i = 1 To n - 2
+k = 1
+  For j = n To 2 * i + 1 Step -1
+    If a(j) * k &lt; a(j - 2) * k Then
+         temp = a(j):  a(j) = a(j - 2): a(j - 2) = temp
+    End If
+    k = -k
+  Next j
+
+  List2.AddItem Str(a(i))
+Next i
+List2.AddItem Str(a(i))
+List2.AddItem Str(a(i + 1))
+End Sub<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>###奇偶数排序（奇数在前升序，偶数在后降序）</p>
+<p>####一，算法思路<br>​      分两种情况讨论<br>​       （1）当后面的数是奇数，且前面的数是偶数或后<br>面的奇数小于前面的奇数时进行交换<br>   （2）当后面的偶数大于前面的偶数时进行交换<br>   ####二，注意事项<br>1.需要注意分类的时候涵盖所有情况，注意从前往后和<br>    从后往前时大于号小于号的变化</p>
+<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Private Sub jospx_Click()
+Dim temp  As Integer
+List2.Clear
+For i = 1 To n - 1
+  For j = n To i + 1 Step -1
+    If a(j) Mod 2 = 1 And a(j - 1) Mod 2 = 0 Or a(j) Mod 2 = 1 And a(j - 1) Mod 2 = 1 And a(j) &lt; a(j - 1) Then
+         temp = a(j):  a(j) = a(j - 1): a(j - 1) = temp
+    ElseIf a(j) Mod 2 = 0 And a(j - 1) Mod 2 = 0 And a(j) &gt; a(j - 1) Then
+         temp = a(j):  a(j) = a(j - 1): a(j - 1) = temp
+    End If
+  Next j
+  List2.AddItem Str(a(i))
+Next i
+List2.AddItem Str(a(i))
+End Sub<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="混合排序（一次排两）"><a href="#混合排序（一次排两）" class="headerlink" title="混合排序（一次排两）"></a>混合排序（一次排两）</h3><p>####一，算法思路</p>
+<p>一次排两个，所以排序次数为n/2次，第一次</p>
+<p>排序时将最小的数放在第一个，将第二小的数放在了</p>
+<p>最后一个，以此类推</p>
+<p>####二，注意事项</p>
+<p>排序的次数为n/2次</p>
+<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Dim temp  As Integer, k As Integer
+List2.Clear
+For i = 1 To n \ 2
+  k = i
+  For j = i + 1 To n - i + 1
+    If a(k) &gt; a(j) Then k = j
+  Next j
+  If k &lt;&gt; i Then t = a(k): a(k) = a(i): a(i) = t
+  For j = i + 1 To n - i
+    If a(j) &lt; a(j + 1) Then a(j) = a(j) + a(j + 1): a(j + 1) = a(j) - a(j + 1): a(j) = a(j) - a(j + 1)
+  Next j
+Next i
+For i = 1 To n
+   List2.AddItem Str(a(i))
+Next i<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>####1.算法思路</p>
+<p>   将数据装入对应的桶中输出</p>
+<p>####2.注意事项</p>
+<p>   此处9为数据最大值</p>
+<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Private Sub Command2_Click()
+Dim temp(1 To 9) As Integer
+For i = 1 To n
+    temp(a(i)) = temp(a(i)) + 1
+Next i
+For i = 1 To 9
+    For j = 1 To temp(i)
+        List2.AddItem Str(i)
+    Next j
+Next i
+End Sub<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
 
             
 
-            
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">mashimaro kumo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://mashimarokumo.github.io/2021/05/13/pai-xu-suan-fa/">https://mashimarokumo.github.io/2021/05/13/pai-xu-suan-fa/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">mashimaro kumo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
 
-            
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
 
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/study/">
+                                    <span class="chip bg-color">study</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
             
-            <style>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
     .valine-card {
         margin: 1.5rem auto;
     }
@@ -820,15 +1181,266 @@ var _hmt = _hmt || [];
     });
 </script>
 
-            
-			
-			
+    
 
-            
+    
 
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/06/12/2021z20t16/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="2021Z20T16">
+                        
+                        <span class="card-title">2021Z20T16</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            mashimaro kumo
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/study/">
+                        <span class="chip bg-color">study</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/02/01/karensfalling-jian-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="KarensFalling简介">
+                        
+                        <span class="card-title">KarensFalling简介</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            mashimaro kumo
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/unity-%E6%B8%B8%E6%88%8F/">
+                        <span class="chip bg-color">unity,游戏</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 云的小屋ouo<br />'
+            + '文章作者: mashimaro kumo<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
 </main>
+
+
 
 
     <footer class="page-footer bg-color">
