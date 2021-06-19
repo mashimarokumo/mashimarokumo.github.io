@@ -690,7 +690,7 @@ var _hmt = _hmt || [];
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Dim temp  As Integer
+                <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">Dim temp  As Integer
 List2.Clear
 For i = 1 To n - 1
   For j = n To i + 1 Step -1
@@ -701,7 +701,7 @@ For i = 1 To n - 1
   List2.AddItem Str(a(i))
 Next i
 List2.AddItem Str(a(i))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Dim k As Integer
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">Dim k As Integer
 Dim t As Integer
 List2.Clear
 For i = 1 To n - 1
@@ -714,18 +714,15 @@ For i = 1 To n - 1
     End If
     List2.AddItem Str(a(i))
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="冒泡排序去重"><a href="#冒泡排序去重" class="headerlink" title="冒泡排序去重"></a>冒泡排序去重</h3><p>####一、算法思路:</p>
-<p>1.常规冒泡排序，方向为n至i+1，大的往前冒</p>
+<h3 id="冒泡排序去重"><a href="#冒泡排序去重" class="headerlink" title="冒泡排序去重"></a>冒泡排序去重</h3><h4 id="一、算法思路"><a href="#一、算法思路" class="headerlink" title="一、算法思路:"></a>一、算法思路:</h4><p>1.常规冒泡排序，方向为n至i+1，大的往前冒</p>
 <p>当相等时，开始去重</p>
 <p>2.去重程序：相邻数据相等时，将<strong>后一个</strong>数组变量赋值为排序数据的最后一个，然后数据总数减1。</p>
-<p>####二、注意事项</p>
-<p>当循环运行至最后一轮（i=bottom-1），此时第i个数据和bottom数据仍重复，bottom减一，程序结束时i=bottom+1（如数据1，1排序去重）</p>
+<h4 id="二、注意事项"><a href="#二、注意事项" class="headerlink" title="二、注意事项"></a>二、注意事项</h4><p>当循环运行至最后一轮（i=bottom-1），此时第i个数据和bottom数据仍重复，bottom减一，程序结束时i=bottom+1（如数据1，1排序去重）</p>
 <p>排序方向和排序对象不同，会导致去重程序发生变化，应注意重新赋值对象的选择，和换上来的数据是否需要进行再次比较！</p>
 <h3 id="选择排序去重"><a href="#选择排序去重" class="headerlink" title="选择排序去重"></a>选择排序去重</h3><h4 id="一-算法思路"><a href="#一-算法思路" class="headerlink" title="一 算法思路"></a>一 算法思路</h4><p>常规选择排序，方向为i+1至n，将大的所对应j赋值于k，当相等时，开始去重</p>
 <p>去重程序：相邻数据相等时，进行剔除处理，将<strong>后一个</strong>数组变量赋值为排序数据的最后一个，然后数据总数减1。</p>
-<p>####二 注意事项*</p>
-<p>\1. 当方向从后往前考虑时，需增加语句    if k = bottom then k = j, 当方向从前往后考虑时，需增加语句j = j - 1</p>
-<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">i = 1
+<h4 id="二-注意事项"><a href="#二-注意事项" class="headerlink" title="二 注意事项"></a>二 注意事项</h4><p>\1. 当方向从后往前考虑时，需增加语句    if k = bottom then k = j, 当方向从前往后考虑时，需增加语句j = j - 1</p>
+<pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">i = 1
 bottom = n
 Do While i &lt;= bottom - 1
    k = I
@@ -745,12 +742,11 @@ Do While i &lt;= bottom - 1
    i = i + 1
 Loop
 If i = bottom Then List2.AddItem Str(a(i))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="奇偶位置排序-（奇数位置升序，偶数位置降序）"><a href="#奇偶位置排序-（奇数位置升序，偶数位置降序）" class="headerlink" title="奇偶位置排序:（奇数位置升序，偶数位置降序）"></a>奇偶位置排序:（奇数位置升序，偶数位置降序）</h3><p>####一，算法思路</p>
-<p>第一轮排序时，只排奇数位，因此从前往后</p>
+<h3 id="奇偶位置排序-（奇数位置升序，偶数位置降序）"><a href="#奇偶位置排序-（奇数位置升序，偶数位置降序）" class="headerlink" title="奇偶位置排序:（奇数位置升序，偶数位置降序）"></a>奇偶位置排序:（奇数位置升序，偶数位置降序）</h3><h4 id="一，算法思路"><a href="#一，算法思路" class="headerlink" title="一，算法思路"></a>一，算法思路</h4><p>第一轮排序时，只排奇数位，因此从前往后</p>
 <p>的话，J的初值是1，与j+1比较排序升序</p>
 <p>新定义一个变量K=1，每进行下一轮排序，</p>
 <p>K变成它的相反数以此达到偶数时降序</p>
-<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Private Sub jowpx_Click()
+<pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">Private Sub jowpx_Click()
 Dim temp  As Integer, k As Integer
 List2.Clear
 For i = 1 To n - 2
@@ -767,9 +763,9 @@ Next i
 List2.AddItem Str(a(i))
 List2.AddItem Str(a(i + 1))
 End Sub<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>###奇偶数排序（奇数在前升序，偶数在后降序）</p>
-<p>####一，算法思路<br>​      分两种情况讨论<br>​       （1）当后面的数是奇数，且前面的数是偶数或后<br>面的奇数小于前面的奇数时进行交换<br>   （2）当后面的偶数大于前面的偶数时进行交换<br>   ####二，注意事项<br>1.需要注意分类的时候涵盖所有情况，注意从前往后和<br>    从后往前时大于号小于号的变化</p>
-<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Private Sub jospx_Click()
+<h3 id="奇偶数排序（奇数在前升序，偶数在后降序）"><a href="#奇偶数排序（奇数在前升序，偶数在后降序）" class="headerlink" title="奇偶数排序（奇数在前升序，偶数在后降序）"></a>奇偶数排序（奇数在前升序，偶数在后降序）</h3><h4 id="一，算法思路-1"><a href="#一，算法思路-1" class="headerlink" title="一，算法思路"></a>一，算法思路</h4><p>​      分两种情况讨论<br>​       （1）当后面的数是奇数，且前面的数是偶数或后<br>面的奇数小于前面的奇数时进行交换<br>   （2）当后面的偶数大于前面的偶数时进行交换</p>
+<h4 id="二，注意事项"><a href="#二，注意事项" class="headerlink" title="二，注意事项"></a>二，注意事项</h4><p>1.需要注意分类的时候涵盖所有情况，注意从前往后和<br>    从后往前时大于号小于号的变化</p>
+<pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">Private Sub jospx_Click()
 Dim temp  As Integer
 List2.Clear
 For i = 1 To n - 1
@@ -784,13 +780,11 @@ For i = 1 To n - 1
 Next i
 List2.AddItem Str(a(i))
 End Sub<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="混合排序（一次排两）"><a href="#混合排序（一次排两）" class="headerlink" title="混合排序（一次排两）"></a>混合排序（一次排两）</h3><p>####一，算法思路</p>
-<p>一次排两个，所以排序次数为n/2次，第一次</p>
+<h3 id="混合排序（一次排两）"><a href="#混合排序（一次排两）" class="headerlink" title="混合排序（一次排两）"></a>混合排序（一次排两）</h3><h4 id="一，算法思路-2"><a href="#一，算法思路-2" class="headerlink" title="一，算法思路"></a>一，算法思路</h4><p>一次排两个，所以排序次数为n/2次，第一次</p>
 <p>排序时将最小的数放在第一个，将第二小的数放在了</p>
 <p>最后一个，以此类推</p>
-<p>####二，注意事项</p>
-<p>排序的次数为n/2次</p>
-<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Dim temp  As Integer, k As Integer
+<h4 id="二，注意事项-1"><a href="#二，注意事项-1" class="headerlink" title="二，注意事项"></a>二，注意事项</h4><p>排序的次数为n/2次</p>
+<pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">Dim temp  As Integer, k As Integer
 List2.Clear
 For i = 1 To n \ 2
   k = i
@@ -805,11 +799,9 @@ Next i
 For i = 1 To n
    List2.AddItem Str(a(i))
 Next i<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>####1.算法思路</p>
-<p>   将数据装入对应的桶中输出</p>
-<p>####2.注意事项</p>
-<p>   此处9为数据最大值</p>
-<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">Private Sub Command2_Click()
+<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><h4 id="1-算法思路"><a href="#1-算法思路" class="headerlink" title="1.算法思路"></a>1.算法思路</h4><p>   将数据装入对应的桶中输出</p>
+<h4 id="2-注意事项"><a href="#2-注意事项" class="headerlink" title="2.注意事项"></a>2.注意事项</h4><p>   此处9为数据最大值</p>
+<pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">Private Sub Command2_Click()
 Dim temp(1 To 9) As Integer
 For i = 1 To n
     temp(a(i)) = temp(a(i)) + 1

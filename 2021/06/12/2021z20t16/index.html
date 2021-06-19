@@ -697,8 +697,7 @@ var _hmt = _hmt || [];
 </ul>
 <p>列如有五堆果子，重量依次为1，2，3，4，5。可以先将重量为1、2堆合并，新堆重量为3，耗费体力为3。一次合并之后，五堆变成了四堆，重量依次为3，3，4，5，接下来将重量为3，3堆合并，耗费体力6。再将重量为4、5两堆合并，耗费体力9，以此类推，四次之后，所有的果子就合成一堆了。</p>
 <hr>
-<p>###代码展示</p>
-<pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">Const n = 10
+<h3 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h3><pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">Const n = 10
 Dim d(1 to n) as Integer
 Dim i As Integer, w As Integer, t As Integer
 Dim startA As Integer, endA As Integer, startB As Integer, endB As Integer
@@ -765,7 +764,7 @@ label1.Caption = Str(w)<span aria-hidden="true" class="line-numbers-rows"><span>
 </tr>
 </tbody></table>
 <p>暂时跳过空白看到下面</p>
-<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">If startA &lt;&gt; endA Then
+<pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">If startA &lt;&gt; endA Then
     If startB &lt;&gt; endB Then
         If d(startA) &lt; d(startB) Then
             t = t + d(startA)
@@ -784,11 +783,11 @@ else
 end if<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>先不管它一连串的if判断，每个判断中它都将某个队列的起始格往后推，将一堆果子重量存入对应的d数组中</p>
 <p>而之后又直接进行了这两步操作</p>
-<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">w = w + t
+<pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">w = w + t
 endB = endB + 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>之后继续循环。不难看出，每次循环就是多多搬一次果子的过程。但由题目得一次搬运应计算搬运的两堆果子的重量之和，而前面的代码中只进行了一次累加，所以for循环空白处应填2</p>
 <p>再回来看之前的代码</p>
-<pre class="line-numbers language-visual" data-language="visual"><div class="caption"><span>basic</span></div><code class="language-visual">If startA &lt;&gt; endA Then
+<pre class="line-numbers language-vb" data-language="vb"><code class="language-vb">If startA &lt;&gt; endA Then
     If startB &lt;&gt; endB Then
         If d(startA) &lt; d(startB) Then
             t = t + d(startA)
