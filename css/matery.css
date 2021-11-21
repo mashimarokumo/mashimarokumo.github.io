@@ -1230,8 +1230,9 @@ article .article-tags .chip {
     font-size: 1rem;
 }
 
-#articleContent ul li {
-    list-style-type: disc;
+
+#articleContent .bg ul li {
+    list-style-type: none;
 }
 
 #articleContent ul ul li {
