@@ -1,0 +1,2034 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fced90a7fdd925f82e2be236e5860931";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="李宏毅2022机器学习笔记, 云的小屋ouo">
+    <meta name="description" content="机器学习方法
+预测模型
+猜测预测数据与已知数据的关系($y = b + wx$)
+
+定义Loss
+传入模型作为参数，平均预算误差的绝对值作为输出(MAE)
+​								或误差平方的平均值(MSE)
+
+找最佳化数值
+
+
+修改模型（sig">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>李宏毅2022机器学习笔记 | 云的小屋ouo</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="云的小屋ouo" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fced90a7fdd925f82e2be236e5860931";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="李宏毅2022机器学习笔记, 云的小屋ouo">
+    <meta name="description" content="机器学习方法
+预测模型
+猜测预测数据与已知数据的关系($y = b + wx$)
+
+定义Loss
+传入模型作为参数，平均预算误差的绝对值作为输出(MAE)
+​								或误差平方的平均值(MSE)
+
+找最佳化数值
+
+
+修改模型（sig">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>李宏毅2022机器学习笔记 | 云的小屋ouo</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+</head>
+
+
+ 
+    <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #49b1f5;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+</script>
+
+ 
+<body>
+    
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-container">
+             <p class="loading-text">loading...马上就出来rua！</p> 
+             <div class="loading-image">
+                 <div></div>
+                 <div></div>
+                 <div></div>
+                 <div></div> 
+                 <div></div>
+             </div>
+        </div>
+    
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">云的小屋ouo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-gamepad" style="zoom: 0.6;"></i>
+      
+      <span>Games</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/Karensfalling">
+          
+          <span>KarensFalling</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dadengtizi">
+          
+          <span>合成大灯蹄子</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">云的小屋ouo</div>
+        <div class="logo-desc">
+            
+            まだ届かない夢のために勉強中
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-gamepad"></i>
+			
+			Games
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/Karensfalling " style="margin-left:75px">
+				  
+		          <span>KarensFalling</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/dadengtizi " style="margin-left:75px">
+				  
+		          <span>合成大灯蹄子</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">李宏毅2022机器学习笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Study/">
+                                <span class="chip bg-color">Study</span>
+                            </a>
+                        
+                            <a href="/tags/Machine-Learning/">
+                                <span class="chip bg-color">Machine Learning</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Machine-Learning/" class="post-category">
+                                Machine Learning
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-11-11
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2024-04-20
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    6 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="机器学习方法"><a href="#机器学习方法" class="headerlink" title="机器学习方法"></a>机器学习方法</h2><ol>
+<li><p>预测模型</p>
+<p>猜测预测数据与已知数据的关系($y = b + wx$)</p>
+</li>
+<li><p>定义Loss</p>
+<p>传入模型作为参数，平均预算误差的绝对值作为输出(MAE)</p>
+<p>​								或误差平方的平均值(MSE)</p>
+</li>
+<li><p>找最佳化数值</p>
+</li>
+</ol>
+<h3 id="修改模型（sigmoid）"><a href="#修改模型（sigmoid）" class="headerlink" title="修改模型（sigmoid）"></a>修改模型（sigmoid）</h3><ol>
+<li><p>考虑w</p>
+<p>$y = b +\displaystyle\sum_{j}w_jx$</p>
+</li>
+<li><p>考虑模型</p>
+</li>
+</ol>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170845.png" alt="image-20231111154158171" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170855.png" alt="image-20231111154613377" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170903.png" alt="image-20231111154729633" style="zoom:33%;">
+$$
+y = b + \displaystyle\sum_i c_i sigmoid(b_i + \sum_jw_{ij}x_j)
+$$
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170911.png" alt="image-20231111160431657" style="zoom:33%;">
+
+<img src="G:/study/others/MachineLearning/pics/机器学习/image-20231111160654332.png" alt="image-20231111160654332" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170917.png" alt="image-20231111160818625" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170923.png" alt="image-20231111161049073" style="zoom:33%;">
+$$
+y = b+ \boldsymbol c^T\sigma(\boldsymbol b+\boldsymbol w\boldsymbol x)
+$$
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170928.png" alt="image-20231111161822839" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170934.png" alt="image-20231111162554616" style="zoom:33%;">
+
+<p>$\eta$为自己设定的leaning rate</p>
+<p>实际操作：B(batch size)为自己决定的参数量，将N个参数分为N/B份，每次拿一个B进行一次数值更新(update)，用光所有B为一次epoch</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170942.png" alt="image-20231111162959893" style="zoom:33%;">
+
+<h3 id="模型修改2-ReLU"><a href="#模型修改2-ReLU" class="headerlink" title="模型修改2(ReLU)"></a>模型修改2(<code>ReLU</code>)</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170948.png" alt="image-20231111163739389" style="zoom:33%;">
+
+<p>两个<code>ReLU</code>可以替换一个sigmoid，故可将原式改为$y = b+\displaystyle\sum_{2i}c_imax(0, b_i+\sum_jw_{ij}x_j)$  </p>
+<p>这样的函数称为<strong>激活函数</strong></p>
+<h3 id="进一步修改（增加层数）"><a href="#进一步修改（增加层数）" class="headerlink" title="进一步修改（增加层数）"></a>进一步修改（增加层数）</h3><p>对得到的数据a再进行$\sigma$操作得到$a^,$ 不断重复</p>
+<p>问题：过拟合</p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170955.png" alt="image-20231111164754541" style="zoom:33%;"><img src="G:\study\others\MachineLearning\pics\机器学习\image-20231111225724229.png" alt="image-20231111225724229"></p>
+<h2 id="Pytorch"><a href="#Pytorch" class="headerlink" title="Pytorch"></a><code>Pytorch</code></h2><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171002.png" alt="image-20231111225853587" style="zoom:33%;">
+
+<h3 id="生成tensor"><a href="#生成tensor" class="headerlink" title="生成tensor"></a>生成tensor</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171021.png" alt="image-20231112232309333" style="zoom:33%;">
+
+<h3 id="tensor运算操作"><a href="#tensor运算操作" class="headerlink" title="tensor运算操作"></a>tensor运算操作</h3><ul>
+<li><p>减少长度squeeze</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171029.png" alt="image-20231112232358180" style="zoom:33%;">
+</li>
+<li><p>升维<code>unsqueeze</code></p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171131.png" alt="image-20231112232736627" style="zoom:33%;">
+</li>
+<li><p>转置transpose</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171137.png" alt="image-20231112233001331" style="zoom:33%;">
+</li>
+<li><p>组合cat</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171142.png" alt="image-20231112233202203" style="zoom:33%;">
+</li>
+<li><p>其他</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171149.png" alt="image-20231112233247391" style="zoom:25%;"></li>
+</ul>
+<h3 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171153.png" alt="image-20231112233517372" style="zoom:33%;">
+
+<p>可用torch.cuda.is_available() 检测是否存在可用gpu</p>
+<h3 id="grad"><a href="#grad" class="headerlink" title="grad"></a>grad</h3><p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171159.png" alt="image-20231112234244805" style="zoom:33%;"><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171206.png" alt="image-20231112234503487"></p>
+<h3 id="数据读取（data）"><a href="#数据读取（data）" class="headerlink" title="数据读取（data）"></a>数据读取（data）</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171216.png" alt="image-20231112234244805" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171222.png" alt="image-20231112234943610" style="zoom:33%;">
+
+<p>shuffle:是否乱序</p>
+<h3 id="建立神经网络"><a href="#建立神经网络" class="headerlink" title="建立神经网络"></a>建立神经网络</h3><ul>
+<li>线性模型</li>
+</ul>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171230.png" alt="image-20231112235305657" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171238.png" alt="image-20231112235335026" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171244.png" alt="image-20231112235626950" style="zoom:33%;">
+
+<ul>
+<li><p>激活函数</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171250.png" alt="image-20231112235701333" style="zoom:33%;"></li>
+</ul>
+<h3 id="Loss-Functions"><a href="#Loss-Functions" class="headerlink" title="Loss Functions"></a>Loss Functions</h3><p>MSE</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171256.png" alt="image-20231112235816607" style="zoom:33%;">
+
+<h3 id="产生神经网络"><a href="#产生神经网络" class="headerlink" title="产生神经网络"></a>产生神经网络</h3><p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171301.png" alt="image-20231113000036718" style="zoom: 25%;"><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171308.png" alt="image-20231113000054359" style="zoom:25%;"></p>
+<p>sequential中依次放入不同层的函数</p>
+<h3 id="更新模型（optimization）"><a href="#更新模型（optimization）" class="headerlink" title="更新模型（optimization）"></a>更新模型（optimization）</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171314.png" alt="image-20231113000412683" style="zoom:33%;">
+
+<p><code>lr</code>为learning rate</p>
+<h3 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h3><ul>
+<li><p>准备</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171321.png" alt="image-20231113000607390" style="zoom:33%;">
+</li>
+<li><p>一个epoch的训练</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171327.png" alt="image-20231113000756919" style="zoom:33%;">
+</li>
+<li><p>模型评估</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171334.png" alt="image-20231113001259335" style="zoom:33%;">
+</li>
+<li><p>测试组</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171341.png" alt="image-20231113001341676" style="zoom:33%;"></li>
+</ul>
+<h3 id="储存-加载模型"><a href="#储存-加载模型" class="headerlink" title="储存/加载模型"></a>储存/加载模型</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171346.png" alt="image-20231113001604544" style="zoom: 33%;">
+
+<h2 id="代码优化方法"><a href="#代码优化方法" class="headerlink" title="代码优化方法"></a>代码优化方法</h2><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171353.png" alt="image-20231113165806187" style="zoom:33%;">
+
+<h3 id="training-loss过大"><a href="#training-loss过大" class="headerlink" title="training loss过大"></a>training loss过大</h3><h4 id="模型太过简单-重新设计模型"><a href="#模型太过简单-重新设计模型" class="headerlink" title="模型太过简单 重新设计模型"></a>模型太过简单 重新设计模型</h4><p>解决方法：</p>
+<ul>
+<li>加入更多features</li>
+<li>增加neuro/layer</li>
+</ul>
+<h4 id="optimization不够好"><a href="#optimization不够好" class="headerlink" title="optimization不够好"></a>optimization不够好</h4><p>判断方法：比较不同模型</p>
+<h3 id="testing-loss过大"><a href="#testing-loss过大" class="headerlink" title="testing loss过大"></a>testing loss过大</h3><h4 id="overfitting过拟合"><a href="#overfitting过拟合" class="headerlink" title="overfitting过拟合"></a>overfitting过拟合</h4><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171406.png" alt="image-20231113170659159" style="zoom:33%;">
+
+<p>解决方法：</p>
+<ul>
+<li><p>增加训练资料</p>
+</li>
+<li><p>data augmentation</p>
+<p>用自己对资料的理解合理增加训练资料</p>
+</li>
+<li><p>减小模型弹性</p>
+<ul>
+<li>减少神经数目、共用参数</li>
+<li>减少features</li>
+<li>early stopping</li>
+<li>regularization</li>
+<li>dropout</li>
+</ul>
+</li>
+</ul>
+<h2 id="Backpropagation"><a href="#Backpropagation" class="headerlink" title="Backpropagation"></a>Backpropagation</h2><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171412.png" alt="image-20231113205032580" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171420.png" alt="image-20231113205611772" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171430.png" alt="image-20231113205819948" style="zoom:33%;">
+
+<p>反推出偏微分</p>
+<h2 id="optimization"><a href="#optimization" class="headerlink" title="optimization"></a>optimization</h2><p>除了局部最小 gradient 为零(critical point)还可能因为处于<strong>鞍点</strong></p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171438.png" alt="image-20231113172619170" style="zoom:33%;">
+
+<p>鉴别处于鞍点还是局部最小点：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171445.png" alt="image-20231113191019521" style="zoom:33%;">
+
+<p>处于critical point时g为0，故可以通过红色项判断图像趋势</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171450.png" alt="image-20231113191441848" style="zoom:33%;">
+
+<p>eigen value：特征值	H为由L的二次微分组成的矩阵</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171458.png" alt="image-20231113192240520" style="zoom:33%;">
+
+<p>通过H也可求出鞍点时能让Loss变小的方向（$\theta^,\rightarrow\theta$)</p>
+<h2 id="Batch-Momentum"><a href="#Batch-Momentum" class="headerlink" title="Batch &amp;  Momentum"></a>Batch &amp;  Momentum</h2><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171504.png" alt="image-20231113193601124" style="zoom:33%;">
+
+<p>由于GPU平行计算，大batch效率可能会高于小batch</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171512.png" alt="image-20231113193750843" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171516.png" alt="image-20231113194701311" style="zoom:33%;">
+
+<p><strong>Momentum</strong></p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171522.png" alt="image-20231113195334045" style="zoom:33%;"><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171529.png" alt="image-20231113195924574"></p>
+<h2 id="自动调整学习率"><a href="#自动调整学习率" class="headerlink" title="自动调整学习率"></a>自动调整学习率</h2><p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171539.png" alt="image-20231113195924574"></p>
+<p>大体思想：在较平滑的地方lr应较大 反之则较小</p>
+<ul>
+<li>Adagard</li>
+</ul>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171544.png" alt="image-20231113200528507" style="zoom:33%;">
+
+<ul>
+<li><p>RMSProP</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171548.png" alt="image-20231113200941873" style="zoom:33%;"></li>
+</ul>
+<p>最常用的optimization策略：Adam（RMSProp + Momentum）</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171553.png" alt="image-20231113202456036" style="zoom:33%;">
+
+<p>Learning Rate Scheduling:</p>
+<p>由于$\sigma$随着时间累计，在g变化较小的地方步伐减小，可能出现朝着之前记录的无关方向暴增的现象，故</p>
+<ul>
+<li><p>Learning Rate Decay:</p>
+<p>将$\eta$设定为随时间减小的变量</p>
+</li>
+<li><p>Warm Up:</p>
+<p>使$\eta$先变大后变小</p>
+</li>
+</ul>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>输出形式为向量，与标准做Loss前(称为logit)要先用Soft-max函数归一化（同时使大小差距更大</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171559.png" alt="image-20231113203134896" style="zoom:33%;">
+
+<p>而如果只有两种分类一般直接套用sigmoid（实质等价）（判别与生成）</p>
+<p><strong>cross-entropy</strong></p>
+<p>可以理解为计算两组概率之间的相似度</p>
+<p>** 在pytorch中使用cross-entropy时自动对最后一层调用soft-max</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171603.png" alt="image-20231113203916492" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171608.png" alt="image-20231113204117032" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171614.png" alt="image-20231113212641390" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171620.png" alt="image-20231113213323356" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171625.png" alt="image-20231113213521316" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171632.png" alt="image-20231113213458428" style="zoom:33%;">
+
+<p>改进：</p>
+<p>共用同一个$\sum$参数</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171638.png" alt="image-20231114160201310" style="zoom:33%;">
+
+<p>分界线变为直线，称这种分类模型为linear model</p>
+<p>三步骤总结：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171642.png" alt="image-20231114160651106" style="zoom:33%;">
+
+<h2 id="逻辑回归（判别）"><a href="#逻辑回归（判别）" class="headerlink" title="逻辑回归（判别）"></a>逻辑回归（判别）</h2><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171647.png" alt="image-20231114162117186" style="zoom:33%;">
+
+<p>在共享$\sum$的前提下 经计算可将$P_{w,b}(C_1|x)$化为$f_{w,b}(x)=\sigma(wx+b)$</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171652.png" alt="image-20231114164522109" style="zoom:50%;">
+
+<p>step2中不使用square error的原因：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171658.png" alt="image-20231114164928852" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171703.png" alt="image-20231114165052873" style="zoom:33%;">
+
+<p>判别模型与生成模型找出的w与b并非同一组</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171709.png" alt="image-20231114165655869" style="zoom:33%;">
+
+<p>由于生成模型有对模型的先行猜测，一般来说判别模型优于生成模型，在少数据量的环境下生成模型也可能占优势</p>
+<p>即判别模型受data影响大，生成模型熟data影响小</p>
+<ul>
+<li><p>为什么需要一个好的Training Data：</p>
+<p>（$\sigma$为自己设定的理想差值）</p>
+</li>
+</ul>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171714.png" alt="image-20231115190022574" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171720.png" alt="image-20231115191455687" style="zoom:33%;">
+
+<p>故增加N（sample出来的训练资料数）或减小H（取参范围）可以减小训练资料和实际资料的差距</p>
+<p>但是H不能太小</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171725.png" alt="image-20231115192124449" style="zoom:33%;">
+
+<h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><p>很有趣！</p>
+<p>专为影像识别设计的学习算法 特点：1.一个特征只要看很小部分就能知道 2.同一个特征可能出现在不同位置</p>
+<p>先将图片缩放为统一大小，再用filter进行卷积操作</p>
+<ol>
+<li>经典设置</li>
+</ol>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171730.jpg" alt="img" style="zoom: 33%;">
+
+<ol start="2">
+<li>共享参数</li>
+</ol>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171735.jpg" alt="img" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171738.jpg" alt="img" style="zoom:33%;">
+
+<p>pooling 在横纵轴拿掉一些像素， 识别出的物体不变 降低计算量，但减少精确度</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171743.jpg" alt="img" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171747.jpg" alt="img" style="zoom:33%;">
+
+<p>为什么deep learning能减少参数量与运算速度</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171753.jpg" alt="img" style="zoom:33%;">
+
+<p>也可用于alphago（满足最开始的两个特征 去除pooling提高精确度</p>
+<p>问题：无法处理缩放、旋转图片</p>
+<h3 id="spatial-transformer"><a href="#spatial-transformer" class="headerlink" title="spatial transformer"></a>spatial transformer</h3><p>对原图片进行平移、旋转、缩放等操作，再投入CNN模型方便识别</p>
+<h2 id="自注意力"><a href="#自注意力" class="headerlink" title="自注意力"></a>自注意力</h2><p>问题：目前输入只能是一维向量，且长度不能改变</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171759.png" alt="image-20231118162347705" style="zoom:33%;">
+
+<p>经过self-attention的向量是考虑了所有向量后生成的新向量</p>
+<p>如何产生新向量？</p>
+<ol>
+<li>判断一个向量与其他各向量之间的关联性</li>
+</ol>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171804.png" alt="image-20231118162756960" style="zoom:33%;">
+
+<p>dot-product：</p>
+<p>常用的关联性计算方式 关联性越大值越大 其中soft-max可改为任意激活方程 常用soft-max</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171809.png" alt="image-20231118164003817" style="zoom:33%;">
+
+<p>再将结果乘上矩阵得到第一个向量</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171814.png" alt="image-20231118164220097" style="zoom:33%;">
+
+<p>其中$W^v,W^q,W^q$均靠机器学习得到</p>
+<p>写成矩阵形式：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171819.png" alt="image-20231118165442577" style="zoom:33%;">
+
+<h3 id="multi-head"><a href="#multi-head" class="headerlink" title="multi head"></a>multi head</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171824.png" alt="image-20231118192616797" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171829.png" alt="image-20231118192638718" style="zoom:33%;">
+
+<p>缺点：feature里完全未包含位置资讯</p>
+<h3 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171835.png" alt="image-20231118193109818" style="zoom:33%;">
+
+<p>将不同的$e^i$加到$a^i$前面 e可由特定函数求出，也可由学习得出</p>
+<p>现有的一些positional encoding方法</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171842.png" alt="image-20231118193321083" style="zoom:33%;">
+
+<h3 id="truncated-self-attention"><a href="#truncated-self-attention" class="headerlink" title="truncated self-attention"></a>truncated self-attention</h3><p>由于有时输入向量长度过大（如语音识别等 经过self-attention时可以不看所有向量，而只看前后数个</p>
+<h3 id="for-image"><a href="#for-image" class="headerlink" title="for image"></a>for image</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171847.png" alt="image-20231118194326843" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171903.png" alt="image-20231118194349227" style="zoom:33%;">
+
+<p>实际上，CNN为self-attention的特例</p>
+<p>self-attention的filter范围实际通过学习决定，限制更少，弹性更大，更容易过拟合，需要的资料量更大</p>
+<p>CNN的filter范围由人为决定，限制更多，弹性更小，小资料量下表现更好</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171908.png" alt="image-20231118195157019" style="zoom:33%;">
+
+<h3 id="对比RNN"><a href="#对比RNN" class="headerlink" title="对比RNN"></a>对比RNN</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171913.png" alt="image-20231118195616416" style="zoom:33%;">
+
+<p>RNN：</p>
+<ol>
+<li>只考虑当前向量之前的向量（存在双向RNN 故可忽略</li>
+<li>新参数依赖之前计算的参数，各个参数不能平行计算。</li>
+<li>参数关联性更难计算，最后一个参数获得第一个参数的关联需将第一个参数一直存在内存中</li>
+<li>参数顺序有关</li>
+</ol>
+<h3 id="for-graph（a-kind-of-GNN）"><a href="#for-graph（a-kind-of-GNN）" class="headerlink" title="for graph（a kind of GNN）"></a>for graph（a kind of GNN）</h3><p>关联性已知，计算关联性与参数时可以指考虑相连的节点</p>
+<h2 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2><p>无关：将词汇表示为vector的方法</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171918.png" alt="image-20231118200806969" style="zoom:33%;">
+
+<h3 id="Elman-Network"><a href="#Elman-Network" class="headerlink" title="Elman Network"></a>Elman Network</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171923.png" alt="image-20231118201139517" style="zoom:33%;">
+
+<p>例子：</p>
+<p>注：三次为同一个network</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171930.png" alt="image-20231118201600461" style="zoom:33%;">
+
+<h3 id="Jordan-Network"><a href="#Jordan-Network" class="headerlink" title="Jordan Network"></a>Jordan Network</h3><p>将output存入memory，并在下个向量的hidden layer输入</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171935.png" alt="image-20231118201951393" style="zoom:33%;">
+
+<h3 id="Bidirectional-RNN"><a href="#Bidirectional-RNN" class="headerlink" title="Bidirectional RNN"></a>Bidirectional RNN</h3><p>同时train一个正向、逆向的network，将两者hidden layer参数结合考虑再投入output layer</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171940.png" alt="image-20231118202352070" style="zoom:33%;">
+
+<h3 id="Long-Short-term-Memory（LSTM）"><a href="#Long-Short-term-Memory（LSTM）" class="headerlink" title="Long Short-term Memory（LSTM）"></a>Long Short-term Memory（LSTM）</h3><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171945.png" alt="image-20231119135524436" style="zoom:33%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171952.png" alt="image-20231119135602896" style="zoom:33%;">
+
+<p>四个input中输入的都是同一参数值乘上不同的weight</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420171957.png" alt="image-20231119140623182" style="zoom:33%;">
+
+<p>故lstm network需要的参数量是普通network的四倍</p>
+<p>矩阵形式：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420172003.png" alt="image-20231119141213464" style="zoom:33%;">
+
+<p>真正的LSTM：</p>
+<p>（在Keras中，这个结构叫做LSTM，上面的结构为SimpleRNN， 此外，还有个GRU的简化版，只有两个门，少了1/3的参数，不容易过拟合</p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420172040.png" alt="image-20231119141515123"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">mashimaro kumo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://mashimarokumo.github.io/posts/li-hong-yi-2022-ji-qi-xue-xi-bi-ji/">https://mashimarokumo.github.io/posts/li-hong-yi-2022-ji-qi-xue-xi-bi-ji/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">mashimaro kumo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Study/">
+                                    <span class="chip bg-color">Study</span>
+                                </a>
+                            
+                                <a href="/tags/Machine-Learning/">
+                                    <span class="chip bg-color">Machine Learning</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'QTmfo8dADxC4PiaUL6HLlnIP-gzGzoHsz',
+        appKey: 'xUusMDGFi1F0CluI5KuWyH6c',
+        serverURLs: 'https://qtmfo8da.lc-cn-n1-shared.com',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '说点什么吧喵~'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/li-hong-yi-2022-ji-qi-xue-xi-bi-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="李宏毅2022机器学习笔记">
+                        
+                        <span class="card-title">李宏毅2022机器学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Machine-Learning/" class="post-category">
+                                    Machine Learning
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Study/">
+                        <span class="chip bg-color">Study</span>
+                    </a>
+                    
+                    <a href="/tags/Machine-Learning/">
+                        <span class="chip bg-color">Machine Learning</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/games101-bi-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Games101笔记">
+                        
+                        <span class="card-title">Games101笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Computer-Graphics/" class="post-category">
+                                    Computer Graphics
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Study/">
+                        <span class="chip bg-color">Study</span>
+                    </a>
+                    
+                    <a href="/tags/Computer-Graphics/">
+                        <span class="chip bg-color">Computer Graphics</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="8434312674"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2024</span>
+            
+            <a href="/about" target="_blank">mashimaro kumo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">10.1k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "1";
+                        var startDate = "31";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/mashimarokumo" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github" style="z-index: 10;"></i>
+    </a>
+
+
+
+    <a href="mailto:2732946269@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open" style="z-index: 10;"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2732946269" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2732946269" data-position="top" data-delay="50">
+        <i class="fab fa-qq" style="z-index: 10;"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+    <a href="https://space.bilibili.com/87828806" class="tooltipped" target="_blank" data-tooltip="在B站上关注我"  data-position="top" data-delay="50"  style="z-index: 20">
+        <i class="fas fa-play-circle"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/js/FunnyTitle.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>

@@ -1,0 +1,2176 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fced90a7fdd925f82e2be236e5860931";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="Games101笔记, 云的小屋ouo">
+    <meta name="description" content="线性代数向量的点乘：判断是否为同一方向
+
+
+点乘大于0则为同一半朝向，小于0则为反朝向
+向量的叉乘：判断里外关系
+
+
+各顶点出发到目标点与同点出发边向量相乘，均大于零或均小于零则为在内 否则在外
+
+变换
+缩放图形
+
+
+反转图形
+
+
+旋转图形">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Games101笔记 | 云的小屋ouo</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="云的小屋ouo" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fced90a7fdd925f82e2be236e5860931";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Games101笔记, 云的小屋ouo">
+    <meta name="description" content="线性代数向量的点乘：判断是否为同一方向
+
+
+点乘大于0则为同一半朝向，小于0则为反朝向
+向量的叉乘：判断里外关系
+
+
+各顶点出发到目标点与同点出发边向量相乘，均大于零或均小于零则为在内 否则在外
+
+变换
+缩放图形
+
+
+反转图形
+
+
+旋转图形">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Games101笔记 | 云的小屋ouo</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+</head>
+
+
+ 
+    <style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #49b1f5;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },2500); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+</script>
+
+ 
+<body>
+    
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading-container">
+             <p class="loading-text">loading...马上就出来rua！</p> 
+             <div class="loading-image">
+                 <div></div>
+                 <div></div>
+                 <div></div>
+                 <div></div> 
+                 <div></div>
+             </div>
+        </div>
+    
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">云的小屋ouo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-gamepad" style="zoom: 0.6;"></i>
+      
+      <span>Games</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/Karensfalling">
+          
+          <span>KarensFalling</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dadengtizi">
+          
+          <span>合成大灯蹄子</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">云的小屋ouo</div>
+        <div class="logo-desc">
+            
+            まだ届かない夢のために勉強中
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-gamepad"></i>
+			
+			Games
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/Karensfalling " style="margin-left:75px">
+				  
+		          <span>KarensFalling</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/dadengtizi " style="margin-left:75px">
+				  
+		          <span>合成大灯蹄子</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Games101笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Study/">
+                                <span class="chip bg-color">Study</span>
+                            </a>
+                        
+                            <a href="/tags/Computer-Graphics/">
+                                <span class="chip bg-color">Computer Graphics</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Computer-Graphics/" class="post-category">
+                                Computer Graphics
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-09-06
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2024-04-20
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    13 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h3><p>向量的点乘：判断是否为同一方向</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165203.png" alt="image-20230906210147863" style="zoom:33%;">
+
+<p>点乘大于0则为同一半朝向，小于0则为反朝向</p>
+<p>向量的叉乘：判断里外关系</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165213.png" alt="image-20230906210236659" style="zoom: 50%;">
+
+<p>各顶点出发到目标点与同点出发边向量相乘，均大于零或均小于零则为在内 否则在外</p>
+<hr>
+<h3 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h3><ul>
+<li><p>缩放图形</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165216.png" alt="image-20230906210805182" style="zoom: 80%;">
+</li>
+<li><p>反转图形</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165219.png" alt="image-20230906210905671" style="zoom:80%;">
+</li>
+<li><p>旋转图形</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170202.png" alt="image-20230906210657531" style="zoom:80%;">
+</li>
+<li><p>偏移图形</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165225.png" alt="image-20230906211056672" style="zoom:80%;"></li>
+</ul>
+<h4 id="齐次坐标"><a href="#齐次坐标" class="headerlink" title="齐次坐标"></a>齐次坐标</h4><ul>
+<li><p>原因：平移为非线性变换 不方便<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165228.png" alt="image-20230906211326174"></p>
+</li>
+<li><p>方法：（二维坐标）将点(x, y)记为(x, y, 1), 将向量(x, y)记为(x, y, 0)</p>
+</li>
+<li><p>好处：</p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165231.png" alt="image-20230906211516803"></p>
+<p>  注：点 + 点 可得两点间中点</p>
+<p>  即可将平移记为</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165234.png" alt="image-20230906211636249" style="zoom: 50%;">
+</li>
+<li><p>注意：矩阵乘积顺序对结果有影响 齐次坐标前同一矩阵先运用线性变换在运用平移操作</p>
+</li>
+<li><p>思考：如何不绕原点旋转？</p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165237.png" alt="image-20230906212021706"></p>
+</li>
+</ul>
+<p>三维同理(x, y, z, 0), (x, y, z ,1)</p>
+<hr>
+<h3 id="观测变换（三维"><a href="#观测变换（三维" class="headerlink" title="观测变换（三维"></a>观测变换（三维</h3><h4 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h4><p>绕谁谁不变</p>
+<ul>
+<li>循环对称性质</li>
+</ul>
+<p>$$<br>  绕x与z时，\vec{y}\times\vec{z} = \vec{x}，\vec{x}\times\vec{y} = \vec{z}，属于同一方向旋转（记为逆时针旋转<br>$$</p>
+<p>$$<br>  而绕y旋转时，\overrightarrow{x}\times\overrightarrow{z} = -\overrightarrow{y}，故须旋转-\alpha<br>$$</p>
+<p>* </p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165243.png" alt="image-20230907175453358" style="zoom:33%;">
+
+<ul>
+<li>罗德里格斯旋转公式（复杂旋转转为xyz旋转<br>$$<br>绕旋转轴\overrightarrow{n}旋转\alpha度<br>$$<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165243.png" alt="image-20230907181022234" style="zoom: 33%;"></li>
+</ul>
+<h4 id="视图变换"><a href="#视图变换" class="headerlink" title="视图变换"></a>视图变换</h4><ul>
+<li><p>三步变换（mvp变换</p>
+<ol>
+<li>模型变换：搭建场景</li>
+<li>视图变换：找好相机角度</li>
+<li>投影变换：将三维空间投影到二维平面</li>
+</ol>
+</li>
+<li><p>相机</p>
+<ul>
+<li>放在哪（e）</li>
+<li>往哪看（g）</li>
+<li>向上方向（t）</li>
+</ul>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165255.png" alt="image-20230907182706869" style="zoom: 33%;">
+
+<p>因为 相对移动</p>
+<p>可假设相机一直在原点，朝向-z方向，y向上</p>
+<p>//好处：扔掉z轴，呈现图像就是关于xy的平面图</p>
+<ul>
+<li><p>如何操作？</p>
+<ol>
+<li><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165259.png" alt="image-20230907183104377" style="zoom:33%;">
+</li>
+<li><p>将<strong>g</strong>旋转到-<strong>z</strong>，<strong>t</strong>旋转到<strong>y</strong>，（<strong>g</strong> x <strong>t</strong>）旋转到<strong>x</strong> （难求）</p>
+</li>
+<li><p>故先将将-<strong>z</strong>旋转到<strong>g</strong>，<strong>y</strong>旋转到<strong>t</strong>，<strong>x</strong>旋转到（<strong>g</strong> x <strong>t</strong>），所需变换即该结果的逆</p>
+</li>
+<li><p>由于旋转矩阵为正交矩阵，矩阵的逆等于转置</p>
+<p>故得<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165303.png" alt="image-20230907183902497" style="zoom:33%;"></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h4><ul>
+<li><p>正交投影</p>
+<ul>
+<li><p>简单思路：将相机如上摆放后，使所有物体z=0，再将所有物体移到x、y均在-1到1的小方片上 即可将物体投影到xy平面，即正交投影的结果</p>
+</li>
+<li><p>正式做法：</p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165308.png" alt="image-20230910194622039"></p>
+<p>把任何形状变成标准立方体</p>
+<ol>
+<li>平移：把中心移到原点</li>
+<li>缩放：把x、y、z宽度缩放为2（对应-1到1</li>
+</ol>
+<p>对应矩阵：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165312.png" alt="image-20230910195031304" style="zoom: 33%;"></li>
+</ul>
+</li>
+<li><p>透视投影</p>
+<ul>
+<li><p>引子：齐次坐标性质</p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165318.png" alt="image-20230911170159196"></p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165353.png" alt="image-20230911170607698" style="zoom:33%;">
+</li>
+<li><p>思路：</p>
+<ol>
+<li><p>将远平面挤到近平面相同大小</p>
+<p>挤压过程中：</p>
+<ul>
+<li>近平面四个顶点不发生变化</li>
+<li>原平面z轴不发生变化</li>
+<li>远平面中心点不发生变化</li>
+</ul>
+</li>
+<li><p>用正交投影方法将远平面投影到近平面上</p>
+</li>
+</ol>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420170144.png" alt="image-20230911171317815"></p>
+<p>需要将矩阵化为</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165408.png" alt="image-20230911191530990" style="zoom:33%;">
+
+<p>即左乘矩阵<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165414.png" alt="image-20230911191827177" style="zoom:33%;"></p>
+<ol>
+<li><p>对于给定的深度n（在近平面上）：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165420.png" alt="image-20230911192059835" style="zoom:33%;">
+
+<p>故可得用待定系数法求第三行（与x、y无关，故前两项为0</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165427.png" alt="image-20230911192148729" style="zoom: 33%;">
+</li>
+<li><p>对于远平面中心点：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165432.png" alt="image-20230911193102032" style="zoom:33%;"></li>
+</ol>
+<p>由1、2可得：<br>$$<br>\begin{cases}<br>\begin{aligned}<br>An + B = n^2\<br>Af +B=f^2<br>\end{aligned}<br>\end{cases}<br>\Rightarrow<br>\begin{cases}<br>\begin{aligned}<br>A=n+f\<br>B=-nf<br>\end{aligned}<br>\end{cases}<br>$$<br><strong>自此第一步把远平面挤压至近平面大小完成</strong></p>
+<p>最终转化矩阵即此结果所求矩阵右乘正交转化矩阵</p>
+</li>
+<li><p>其他：经此变换后近平面、远平面的点z值不变，但中间的点z值并非不变(z变大，即变近)</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="光栅化成像"><a href="#光栅化成像" class="headerlink" title="光栅化成像"></a>光栅化成像</h3><h5 id="透视投影的视锥定义方式"><a href="#透视投影的视锥定义方式" class="headerlink" title="透视投影的视锥定义方式"></a>透视投影的视锥定义方式</h5><ol>
+<li>视图宽高比</li>
+<li>垂直可视角度（红线所成角度）（红线所连点为长宽中点）</li>
+</ol>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165437.png" alt="image-20230911204909056" style="zoom: 50%;">
+
+<p>光栅化：把东西画在屏幕上</p>
+<p>即将[-1, 1]^2的方块映射到[0, width] * [0, height]的屏幕上</p>
+<p>步骤：</p>
+<ol>
+<li><p>缩放：将[-1, 1]拉伸至需求大小</p>
+</li>
+<li><p>平移：由于坐标计算从左下角开始，需将中心平移至原点</p>
+<p>合并1、2可得矩阵：<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165443.png" alt="image-20230911211622374" style="zoom:33%;"></p>
+</li>
+<li><p>光栅化：将图形打成像素</p>
+</li>
+</ol>
+<p>三角形：最基础的多边形</p>
+<h5 id="采样"><a href="#采样" class="headerlink" title="采样"></a>采样</h5><ul>
+<li><p>概念：把函数离散化的过程</p>
+</li>
+<li><p>应用：设立函数，当中心在三角形内部时返回1，否则返回0</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165448.png" alt="image-20230912163111534" style="zoom:50%;">
+</li>
+<li><p>具体实现：</p>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> xmax<span class="token punctuation">;</span> <span class="token operator">++</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> ymax<span class="token punctuation">;</span> <span class="token operator">++</span>y<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        image<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">inside</span><span class="token punctuation">(</span>tri<span class="token punctuation">,</span> x <span class="token operator">+</span> <span class="token number">0.5f</span><span class="token punctuation">,</span> y <span class="token operator">+</span> <span class="token number">0.5f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>包围盒：找到顶点x、y的最小与最大值，形成包围盒 只用对其内的像素做光栅化处理</p>
+</li>
+</ul>
+<h5 id="锯齿"><a href="#锯齿" class="headerlink" title="锯齿"></a>锯齿</h5><ul>
+<li>原因：<ol>
+<li>像素本身大小</li>
+<li>采样率不够高</li>
+</ol>
+</li>
+<li>抗锯齿/反走样</li>
+</ul>
+<h5 id="抗锯齿-反走样"><a href="#抗锯齿-反走样" class="headerlink" title="抗锯齿/反走样"></a>抗锯齿/反走样</h5><ul>
+<li><p>现象（artifact）</p>
+<ul>
+<li>锯齿</li>
+<li>摩尔纹</li>
+<li>车轮效应（时间上的采样</li>
+</ul>
+</li>
+<li><p>原因：信号速度太快 采样速度跟不上</p>
+</li>
+<li><p>反走样方法：在采样之前进行滤波/模糊</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165455.png" alt="image-20230912194812624" style="zoom:50%;">
+</li>
+<li><p>why？</p>
+</li>
+</ul>
+<p>$$<br>  定义\cos2\pi fx， f即频率<br>$$</p>
+<ul>
+<li><p>前言：<strong>傅里叶级数展开</strong></p>
+<p>任何一个周期函数可以写成一系列正弦余弦的线性组合加常数的形式</p>
+</li>
+<li><p>引出：<strong>傅里叶变换</strong></p>
+<ul>
+<li><p>定义：给定任意一个函数可以经过一系列变换操作变为另一函数 通过逆变换可以变回原函数</p>
+</li>
+<li><p>作用：把一个函数从时域变到频域</p>
+</li>
+<li><p>例子：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165501.png" alt="image-20230912201416900" style="zoom:50%;">
+
+<p>右图为变换后图片 中间为低频 四周为高频 亮度表明图片信息主要集中于低频</p>
+</li>
+</ul>
+</li>
+<li><p>即 走样：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165507.png" alt="image-20230912200155332" style="zoom:50%;"></li>
+</ul>
+<h6 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h6><ul>
+<li><p>意思：把某特定频段删去</p>
+</li>
+<li><p>例子（高通滤波）：用滤波将刚刚的图的低频信号滤去再逆变换为原图得到左图</p>
+<p>可得高频主要为图像剧烈变换部分</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165516.png" alt="image-20230912201740247" style="zoom:50%;">
+</li>
+<li><p>低通滤波：与上相反 边界模糊了</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165522.png" alt="image-20230912202128305" style="zoom:50%;"></li>
+</ul>
+<h6 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h6><ul>
+<li><p>概念过程：下面三格窗口向右移动 与对应三数相乘后填回格子中</p>
+<p>即对每三个各自做加权平均</p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165530.png" alt="image-20230912202528804"></p>
+</li>
+<li><p>卷积定理：<strong>时域上的卷积等于频域上的乘积，频域上的卷积也等于时域上的乘积</strong>（卷积的对偶性）(互逆)</p>
+<p>例：此例中任何一个像素等于周围像素平均 故得模糊图 频域上类似低通滤波</p>
+<p>乘1/9使图像整体颜色(亮度)值经过卷积操作后不发生变化（求均值）</p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165535.png" alt="image-20230912202928413"></p>
+<p>卷积区域越大<code>(9*9 -&gt; 63*63)</code> 得到的图像越模糊 频域上白色越小、越接近中心</p>
+</li>
+</ul>
+<h6 id="采样在频域上的意义"><a href="#采样在频域上的意义" class="headerlink" title="采样在频域上的意义"></a>采样在频域上的意义</h6><ul>
+<li><p>冲激函数</p>
+<p>只在特定位置上有值，其他位置上无值的函数（函数c）</p>
+</li>
+<li><p>采样即可表示为一个函数乘以一系列冲激函数后的结果</p>
+<p>即 <code>a * c = e</code></p>
+</li>
+<li><p>对应的频域操作</p>
+<p>即在频域上对对应的函数进行卷积操作 <code>b 卷积 d = f</code></p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165542.png" alt="image-20230918165042506" style="zoom:33%;">
+</li>
+<li><p>即采样为<strong>频谱的重复</strong></p>
+<p>得出产生走样现象的原因是采样频率不够快导致复制时采样的频谱出现了混叠</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165547.png" alt="image-20230918165449087" style="zoom:50%;"></li>
+</ul>
+<h6 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h6><ol>
+<li><p>增加采样率</p>
+<p>受制于物理限制</p>
+</li>
+<li><p>反走样</p>
+<p><strong>先做模糊 再做采样</strong></p>
+<p>即先进行低通滤波(去除高频) 再进行采样</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165552.png" alt="image-20230918170026947" style="zoom:50%;">
+
+<ul>
+<li><p>例子</p>
+<p>用大小为一个像素的低通滤波器对三角形进行卷积操作(取平均)</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165558.png" alt="image-20230918170720729" style="zoom:50%;">
+</li>
+<li><p>怎么算？？(1)</p>
+<p><strong>MSAA</strong>(对反走样的近似)</p>
+<p>依靠<strong>模糊</strong>解决走样问题 <strong>并没有提高分辨率</strong></p>
+<p>将一个像素拆分为几个较小像素(增加采样点) 取每个像素内采样点在三角形内的平均覆盖率 用此值乘以三角形原本颜色</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165603.png" alt="image-20230918171248715" style="zoom:25%;">
+
+<p>=&gt;</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165609.png" alt="image-20230918171309781" style="zoom:25%;">
+
+<p>由于采样频率为一个像素，此模糊操作结束后所得图形即反走样图形</p>
+<p>代价：增大计算量</p>
+</li>
+<li><p>FXAA(Fast Approximate AA)</p>
+<ol>
+<li>得到一副有锯齿的图片</li>
+<li>找到锯齿边界</li>
+<li>替换为无锯齿边界</li>
+</ol>
+</li>
+<li><p>TAA(Temporal AA)</p>
+<p>复用上一帧的结果</p>
+<p>相当于把MSAA对应的样本分布在时间上</p>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="超分辨率"><a href="#超分辨率" class="headerlink" title="超分辨率"></a>超分辨率</h5><p>无锯齿放大图片分辨率</p>
+<ul>
+<li><p>DLSS(深度学习)</p>
+<p>将细节猜出来</p>
+</li>
+</ul>
+<p>与抗锯齿不同 但本质相同</p>
+<h5 id="遮挡-深度"><a href="#遮挡-深度" class="headerlink" title="遮挡(深度)"></a>遮挡(深度)</h5><ul>
+<li><p>画家算法<code>O(nlogn)</code></p>
+<p>先画远的 再画近的</p>
+<p>弊端：无法定义互相遮挡的深度关系</p>
+</li>
+<li><p>深度缓存 Z-Buffer<code>O(n)</code></p>
+<p>生成结果图(frame buffer)的同时生成场景中任何一个像素的深度(depth(z) buffer)</p>
+<p>注：始终假设相机看向-z 与这里的深度相反</p>
+<p>一开始每个像素深度设为无限远 之后一步步记录到最小深度</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165614.png" alt="image-20230918195842260" style="zoom:50%;">
+
+<p>好处：结果与渲染顺序无关(由于浮点型判断相等十分困难 可假设没有两个图形位于同一深度的情况)</p>
+</li>
+</ul>
+<hr>
+<h3 id="着色"><a href="#着色" class="headerlink" title="着色"></a>着色</h3><ul>
+<li>定义：对不同物体运用不同材质的过程</li>
+<li>注：着色不包括阴影</li>
+</ul>
+<h4 id="基础着色模型-Blinn-Phong反射模型"><a href="#基础着色模型-Blinn-Phong反射模型" class="headerlink" title="基础着色模型(Blinn-Phong反射模型)"></a>基础着色模型(<code>Blinn-Phong反射模型</code>)</h4><p>物体表面颜色可分为</p>
+<ol>
+<li>物体高光</li>
+<li>漫反射部分</li>
+<li>间接光照</li>
+</ol>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165627.png" alt="image-20230918202924853" style="zoom:50%;">
+
+<h5 id="漫反射"><a href="#漫反射" class="headerlink" title="漫反射"></a>漫反射</h5><p>假设物体一截取小段平面必为平面 定义 v为观测方向 l为光照方向 n为法线(<strong>均为单位向量</strong>) 及物体表面属性</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165634.png" alt="image-20230918203210649" style="zoom:50%;">
+
+<p>单位面积接收到的能量(光)与${\cos\theta = \vec l \cdot \vec n}$成正比</p>
+<p>对于点光源的周围，假设光波传播过程中不消耗能量，则光传播越远光球壳表面积越大，单位面积能量就越小。设单位面积能量为<code>I</code>，则：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165643.png" alt="image-20230921002535608" style="zoom:50%;">
+
+<p>单位面积接收到的能量(光)与$r^2$成反比</p>
+<p>即：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165650.png" alt="image-20230921003130086" style="zoom: 33%;">
+
+<p>注：$\vec n \cdot \vec l &lt; 0$时表示从面的一边射到面的另一边，在这里没有实际意义，故取0</p>
+<p>系数<code>kd</code>为对漫反射颜色的吸收，可表示成[0, 1]的<code>rgb</code>的向量</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165657.png" alt="image-20230921004444372" style="zoom:33%;">
+
+<p>注2：漫反射能量与观测角度无关</p>
+<h5 id="高光"><a href="#高光" class="headerlink" title="高光"></a>高光</h5><p>光滑的物体表面光的方向接近镜面反射，故只有观测角度与高光角度接近时才能看到高光</p>
+<p>由于反射向量难以计算 可转化为法线向量与<code>半程向量</code>接近(点乘接近1)</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165702.png" alt="image-20230921005815645" style="zoom:50%;">
+
+<ol>
+<li><p>高光一般为白色，故镜面反射系数<code>ks</code>一般为白色。</p>
+</li>
+<li><p>被吸收的能量(n 点乘 l)被简化</p>
+</li>
+<li><p>指数p可以提高容忍度(一般为100 到 200)</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165708.png" alt="image-20230921010427632" style="zoom:33%;">
+</li>
+<li><p>例子：漫反射与高光结合后的图形</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165713.png" alt="image-20230921010522222" style="zoom:50%;"></li>
+</ol>
+<h5 id="环境光照"><a href="#环境光照" class="headerlink" title="环境光照"></a>环境光照</h5><p>由于环境光照过于复杂，假设任何一个点接触到的环境光照永远相同。实际为一个常数。</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165718.png" alt="image-20230921010833759" style="zoom:33%;">
+
+<p>对所有的点进行此着色模型可得：</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165722.png" alt="image-20230921011005078" style="zoom:50%;">
+
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165727.png" alt="image-20230921011048843" style="zoom:50%;">
+
+
+
+<h4 id="着色频率"><a href="#着色频率" class="headerlink" title="着色频率"></a>着色频率</h4><p>将着色运用在哪些点上</p>
+<ul>
+<li><p>Flat Shading<br>对三角形两边做叉积得到法线，并在每个三角形内部进行统一着色</p>
+</li>
+<li><p><code>Gouraud Shading</code><br>对平面的每个顶点周围三角形的法线求平均，进行着色，并在中间进行插值</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165732.png" alt="image-20230921012630037" style="zoom:25%;">
+</li>
+<li><p><code>Phong Shading</code><br>求出顶点法线 在三角形内部对法线方向进行插值，得到任意一点的法线方向，对每个像素点进行着色</p>
+</li>
+</ul>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165737.png" alt="image-20230921012232928" style="zoom:50%;">
+
+<hr>
+<h3 id="实时渲染管线"><a href="#实时渲染管线" class="headerlink" title="实时渲染管线"></a>实时渲染管线</h3><p>从三维场景到二维图的过程</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165742.png" alt="image-20230921183047880" style="zoom:50%;">
+
+<ol>
+<li>输入顶点</li>
+<li>生成三角形</li>
+<li>光栅化</li>
+<li>着色</li>
+<li>纹理映射</li>
+<li>输出</li>
+</ol>
+<p><code>Shader</code>即内置管线处理过程中可自定义修改部分。会自动应用在每个顶点或每个像素(片元)上</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165748.png" alt="image-20230921184458360" style="zoom:50%;">
+
+<p>其中用到简单的<code>Phong</code>模型光线计算</p>
+<h3 id="纹理映射"><a href="#纹理映射" class="headerlink" title="纹理映射"></a>纹理映射</h3><p>定义在着色过程中不同位置的不同物体属性(如漫反射系数)实现纹理</p>
+<p>三维物体表面的纹理其实是二维的，物体表面上的点与二维图像上点的映射即纹理映射</p>
+<h4 id="uv坐标"><a href="#uv坐标" class="headerlink" title="uv坐标"></a><code>uv坐标</code></h4><p>假设映射关系已知，设纹理图为在<code>uv坐标</code>上的一张图(u、v均在[0, 1])</p>
+<p>tileable texture：将纹理复制连接在上下左右后依然连续</p>
+<h4 id="重心坐标-插值"><a href="#重心坐标-插值" class="headerlink" title="重心坐标(插值)"></a>重心坐标(插值)</h4><ul>
+<li>作用：做插值，在平面内进行平滑过渡</li>
+<li>插值什么：颜色、法线…</li>
+</ul>
+<p>将三角形上任意一点表示为A B C坐标的线形组合，则重心为系数相加为1的点</p>
+<p><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165753.png" alt="image-20230921194024695" style="zoom:50%;">即$\begin{cases} (x, y) = \alpha A+ \beta B + \gamma C\\alpha + \beta + \gamma = 1 \end{cases}$ , 可用$(\alpha, \beta, \gamma)$ 表示点(x, y)</p>
+<p>仅当$\alpha、\beta、\gamma$均非负时，中心才在三角形内 如不满足$\alpha + \beta + \gamma = 1$则该点不在三角形的平面内</p>
+<ol>
+<li>由奔驰定理可求得每点的重心坐标 <img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165759.png" alt="image-20230921200550116" style="zoom:50%;"></li>
+<li><img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165804.png" alt="image-20230921200948917" style="zoom:50%;"></li>
+</ol>
+<p>而三角形重心的重心坐标即 $(\frac13, \frac13, \frac13)$</p>
+<p>注：转换为投影坐标后<strong>不能</strong>保证重心坐标不变，故三维坐标下应<strong>先算出重心坐标</strong>，做完插值再进行投影操作</p>
+<h4 id="应用纹理"><a href="#应用纹理" class="headerlink" title="应用纹理"></a>应用纹理</h4><h5 id="纹理太小"><a href="#纹理太小" class="headerlink" title="纹理太小"></a>纹理太小</h5><ul>
+<li><p>简单方法：对每个像素点，计算出<code>uv</code>坐标，将对应的纹理设为该像素点的漫反射系数</p>
+</li>
+<li><p>问题：纹理太小无法完全覆盖所有像素点？（高分辨率下，<code>uv</code>坐标可能对应小数）</p>
+</li>
+<li><p>解决：坐标四舍五入，使多个像素点映射到同一个纹理点上，导致低分辨率</p>
+</li>
+<li><p>进一步解决：<strong>双线性插值</strong>（点查询）</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165810.png" alt="image-20230926171320165" style="zoom:33%;">
+
+<p>取小数<code>uv</code>坐标周围四个点，进行水平方向和竖直方向上的插值，即可得到任意点的平滑过渡</p>
+</li>
+<li><p><strong>双三次插值</strong>/<strong>双立法插值</strong></p>
+<p>取周围临近16个点做三次插值</p>
+</li>
+<li><p>结果对比</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165818.png" alt="image-20230926171836809" style="zoom:50%;"></li>
+</ul>
+<h5 id="纹理太大"><a href="#纹理太大" class="headerlink" title="纹理太大"></a>纹理太大</h5><ul>
+<li><p>现象：严重的摩尔纹与锯齿（走样）</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165824.png" alt="image-20230926180808796" style="zoom: 33%;">
+</li>
+<li><p>原因：一个像素覆盖的纹理上的区域太大</p>
+</li>
+<li><p>解决方法：之前学过的<strong>超采样</strong> 可以解决，但消耗巨大</p>
+</li>
+</ul>
+<h6 id="mipmap"><a href="#mipmap" class="headerlink" title="mipmap"></a>mipmap</h6><ul>
+<li><p>方法2：不进行采样 即<strong>mipmap</strong>（图像金字塔）（范围查询）</p>
+<p>快、近似、正方形</p>
+<p>一共$\log_2n$层 存储量只多了$\frac13$</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165830.png" alt="image-20230927154435559" style="zoom:50%;">
+
+<p>近似方法：四周在<code>uv</code>坐标下距离差距的最大值L <code>L*L</code>即一个像素在<code>uv</code>坐标下的覆盖范围 这个正方形在Mipmap中第D层一定能取到<code>1*1</code>的大小</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165838.png" alt="image-20230927161329940" style="zoom:50%;">
+
+<p>结果：<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165843.png" alt="image-20230927162611719" style="zoom:50%;"></p>
+<p>问题：会有分层不连续的结果</p>
+<p>解决：<strong>三线性插值</strong>在上下两层分别进行双线性插值，再对两层的结果分别进行插值</p>
+<p>结果:</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165849.png" alt="image-20230927163039095" style="zoom: 50%;"></li>
+</ul>
+<h6 id="各向异性过滤"><a href="#各向异性过滤" class="headerlink" title="各向异性过滤"></a>各向异性过滤</h6><ul>
+<li><p>STILL问题：过分模糊<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165857.png" alt="image-20230927163314457" style="zoom:50%;"></p>
+</li>
+<li><p>原因：1. 近似 2. 只能查询正方形，在计算长条形区域时加入了不必要的平均</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165902.png" alt="image-20230927163932352" style="zoom:50%;">
+</li>
+<li><p>解决：各向异性过滤（<code>ripmap</code>）</p>
+<img src="https://raw.gitmirror.com/mashimarokumo/blogResources/master/res/20240420165908.png" alt="image-20230927163621568" style="zoom:33%;">
+
+<p>对于这张图，<code>mipmap</code>只实现对角线上图片，而这张图可以将查询范围从正方形扩大到矩形</p>
+<p>内存变为原来的三倍</p>
+<p>基本只影响显存开销，不增加计算量</p>
+</li>
+<li><p>still：对于斜向区域无法很好的近似</p>
+</li>
+<li><p><strong>EWA过滤</strong></p>
+<p>基本思路：把一个不规则形状拆成很多圆形，多次查询覆盖原形状</p>
+<p>问题：时耗大</p>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">mashimaro kumo</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://mashimarokumo.github.io/posts/games101-bi-ji/">https://mashimarokumo.github.io/posts/games101-bi-ji/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">mashimaro kumo</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Study/">
+                                    <span class="chip bg-color">Study</span>
+                                </a>
+                            
+                                <a href="/tags/Computer-Graphics/">
+                                    <span class="chip bg-color">Computer Graphics</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'QTmfo8dADxC4PiaUL6HLlnIP-gzGzoHsz',
+        appKey: 'xUusMDGFi1F0CluI5KuWyH6c',
+        serverURLs: 'https://qtmfo8da.lc-cn-n1-shared.com',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '说点什么吧喵~'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/posts/li-hong-yi-2022-ji-qi-xue-xi-bi-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="李宏毅2022机器学习笔记">
+                        
+                        <span class="card-title">李宏毅2022机器学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-11-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Machine-Learning/" class="post-category">
+                                    Machine Learning
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Study/">
+                        <span class="chip bg-color">Study</span>
+                    </a>
+                    
+                    <a href="/tags/Machine-Learning/">
+                        <span class="chip bg-color">Machine Learning</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/bian-ji-qi-jian-dan-tuo-zhan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="编辑器简单拓展">
+                        
+                        <span class="card-title">编辑器简单拓展</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Unity/" class="post-category">
+                                    Unity
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Unity/">
+                        <span class="chip bg-color">Unity</span>
+                    </a>
+                    
+                    <a href="/tags/Unity-Editor/">
+                        <span class="chip bg-color">Unity Editor</span>
+                    </a>
+                    
+                    <a href="/tags/Study/">
+                        <span class="chip bg-color">Study</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="8434312674"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2024</span>
+            
+            <a href="/about" target="_blank">mashimaro kumo</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">10.1k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "1";
+                        var startDate = "31";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/mashimarokumo" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github" style="z-index: 10;"></i>
+    </a>
+
+
+
+    <a href="mailto:2732946269@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open" style="z-index: 10;"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2732946269" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2732946269" data-position="top" data-delay="50">
+        <i class="fab fa-qq" style="z-index: 10;"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+    <a href="https://space.bilibili.com/87828806" class="tooltipped" target="_blank" data-tooltip="在B站上关注我"  data-position="top" data-delay="50"  style="z-index: 20">
+        <i class="fas fa-play-circle"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/js/FunnyTitle.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>
