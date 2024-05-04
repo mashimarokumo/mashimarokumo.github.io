@@ -6,7 +6,7 @@
   <link href="https://mashimarokumo.github.io/atom.xml" rel="self"/>
   
   <link href="https://mashimarokumo.github.io/"/>
-  <updated>2024-05-04T15:46:34.443Z</updated>
+  <updated>2024-05-04T16:01:18.047Z</updated>
   <id>https://mashimarokumo.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://mashimarokumo.github.io/posts/unity-tu-xiang-mei-hua-xi-tong/"/>
     <id>https://mashimarokumo.github.io/posts/unity-tu-xiang-mei-hua-xi-tong/</id>
     <published>2024-05-04T13:37:36.000Z</published>
-    <updated>2024-05-04T15:46:34.443Z</updated>
+    <updated>2024-05-04T16:01:18.047Z</updated>
     
     
       
@@ -42,6 +42,37 @@
     <category term="Computer Graphics" scheme="https://mashimarokumo.github.io/tags/Computer-Graphics/"/>
     
     <category term="Study" scheme="https://mashimarokumo.github.io/tags/Study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于OpenGL的Windowkill游戏复刻</title>
+    <link href="https://mashimarokumo.github.io/posts/ji-yu-opengl-de-windowkill-you-xi-fu-ke/"/>
+    <id>https://mashimarokumo.github.io/posts/ji-yu-opengl-de-windowkill-you-xi-fu-ke/</id>
+    <published>2023-12-27T08:27:38.000Z</published>
+    <updated>2024-05-04T16:59:29.518Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-系统亮点和操作说明&quot;&gt;&lt;a href=&quot;#1-系统亮点和操作说明&quot; class=&quot;headerlink&quot; title=&quot;1.系统亮点和操作说明&quot;&gt;&lt;/a&gt;1.系统亮点和操作说明&lt;/h2&gt;&lt;h3 id=&quot;1-1-总体介绍&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Computer Graphics" scheme="https://mashimarokumo.github.io/categories/Computer-Graphics/"/>
+    
+    
+    <category term="Computer Graphics" scheme="https://mashimarokumo.github.io/tags/Computer-Graphics/"/>
+    
+    <category term="Study" scheme="https://mashimarokumo.github.io/tags/Study/"/>
+    
+    <category term="Game Create" scheme="https://mashimarokumo.github.io/tags/Game-Create/"/>
+    
+    <category term="Game" scheme="https://mashimarokumo.github.io/tags/Game/"/>
     
   </entry>
   
